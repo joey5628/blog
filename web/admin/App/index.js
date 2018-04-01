@@ -3,8 +3,16 @@
  * @date 2018/3/31
  */
 import React, { Component } from 'react'
-import './index.less'
 import { hot } from 'react-hot-loader'
+import { Switch, Route } from 'react-router-dom'
+import BaseContainer from '@adminComponents/BaseContainer/'
+import Login from '../containers/Login'
+import Home from '../containers/Home'
+import 'normalize.css'
+import 'antd/dist/antd.css'
+import '../assets/base.css'
+import './index.less'
+
 
 class App extends Component {
     constructor(props) {
@@ -13,7 +21,12 @@ class App extends Component {
 
     render() {
         return (
-            <h1>chaiyBlog</h1>
+            <BaseContainer>
+                <Switch>
+                    <Route exact path="/login" component={Login}/>
+                    <Route path="/" component={Home}/>
+                </Switch>
+            </BaseContainer>
         )
     }
 }

@@ -3,8 +3,13 @@
  * @date 2018/3/31
  */
 const path = require('path');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const contextPath = path.join(__dirname, '../web');
 const nodeModules = path.join(__dirname, '../node_modules');
+
+function resolve(dir) {
+    return path.join(__dirname, '../web/', dir)
+}
 
 let cssLoader = [
     { loader: 'style-loader' },
@@ -18,26 +23,8 @@ let cssLoader = [
         }
     }
 ];
-
-console.log('cssLoader:', cssLoader);
-
-// const lessLoader = [
-//     { loader: 'style-loader' },
-//     { loader: 'css-loader' },
-//     {
-//         loader: 'postcss-loader',
-//         options: {
-//             config: {
-//                 path: './postcss.config.js'
-//             }
-//         }
-//     },
-//     { loader: 'less-loader'}
-// ];
-
 const lessLoader = cssLoader.concat({ loader: 'less-loader'});
 
-console.log('lessLoader:', lessLoader);
 
 module.exports = {
     context: contextPath,
@@ -54,7 +41,7 @@ module.exports = {
 
         // 别名
         alias: {
-
+            '@adminComponents': resolve('admin/components/')
         },
     },
 
@@ -68,13 +55,25 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: nodeModules,
+                // exclude: nodeModules,
                 use: cssLoader
             },
             {
                 test: /\.less$/,
-                exclude: nodeModules,
-                use: lessLoader
+                // exclude: nodeModules,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' },
+                    { loader: 'less-loader'},
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            config: {
+                                path: path.join(__dirname, '../build/postcss.config.js')
+                            }
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -86,7 +85,7 @@ module.exports = {
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                loader: 'url-loader',
+                loader: 'file-loader',
                 options: {
                     limit: 8192,
                     name: 'fonts/[name].[hash:7].[ext]'
@@ -95,5 +94,9 @@ module.exports = {
         ],
 
         // noParse: ''
-    }
+    },
+
+    // plugins: [
+    //     new ExtractTextPlugin('css/[name].[contenthash:8].css'),
+    // ]
 };
