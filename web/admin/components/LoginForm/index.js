@@ -3,9 +3,9 @@
  * @date 2018/4/1
  */
 
-import React, { Component } from 'antd'
+import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
-const FormItem = Form.item;
+const FormItem = Form.Item;
 
 export default class LoginForm extends Component {
     constructor(props) {

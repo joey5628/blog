@@ -60,7 +60,7 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                // exclude: nodeModules,
+                exclude: nodeModules,
                 use: [
                     { loader: 'style-loader' },
                     { loader: 'css-loader' },

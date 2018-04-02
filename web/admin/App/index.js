@@ -8,9 +8,6 @@ import { Switch, Route } from 'react-router-dom'
 import BaseContainer from '@adminComponents/BaseContainer/'
 import Login from '../containers/Login'
 import Home from '../containers/Home'
-import 'normalize.css'
-import 'antd/dist/antd.css'
-import '../assets/base.css'
 import './index.less'
 
 

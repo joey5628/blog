@@ -15,9 +15,12 @@ export default class Login extends Component {
     render() {
         {/*<div className="login-wrap">*/}
             {/*<div className="login-main">*/}
-                {/*Login*/}
+                {/*<div className="login-content">*/}
+                    {/*<h3 className="title">登录</h3>*/}
+                    {/*<LoginFrom></LoginFrom>*/}
+                {/*</div>*/}
             {/*</div>*/}
-            {/*<div className="right-wrap">*/}
+            {/*<div className="right-main">*/}
 
             {/*</div>*/}
         {/*</div>*/}
@@ -26,17 +29,17 @@ export default class Login extends Component {
             {/*<Col span={12}>col-12</Col>*/}
         {/*</Row>*/}
         return (
-            <div className="login-wrap">
-                <div className="login-main">
+            <Row className="login-wrap">
+                <Col span={12} className="login-main">
                     <div className="login-content">
                         <h3 className="title">登录</h3>
                         <LoginFrom></LoginFrom>
                     </div>
-                </div>
-                <div className="right-main">
+                </Col>
+                <Col span={12} className="right-main">
 
-                </div>
-            </div>
+                </Col>
+            </Row>
         )
     }
 }
