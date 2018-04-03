@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
+import './index.less'
 const FormItem = Form.Item;
 
 export default class LoginForm extends Component {
@@ -23,7 +24,8 @@ export default class LoginForm extends Component {
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        登录
+                        登&nbsp;录
+                        <Icon type="arrow-right"/>
                     </Button>
                 </FormItem>
             </Form>

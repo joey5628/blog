@@ -13,33 +13,31 @@ export default class Login extends Component {
     }
 
     render() {
-        {/*<div className="login-wrap">*/}
-            {/*<div className="login-main">*/}
+        {/*<Row className="login-wrap">*/}
+            {/*<Col span={12} className="login-main">*/}
                 {/*<div className="login-content">*/}
                     {/*<h3 className="title">登录</h3>*/}
                     {/*<LoginFrom></LoginFrom>*/}
                 {/*</div>*/}
-            {/*</div>*/}
-            {/*<div className="right-main">*/}
+            {/*</Col>*/}
+            {/*<Col span={12} className="right-main">*/}
 
-            {/*</div>*/}
-        {/*</div>*/}
-        {/*<Row>*/}
-            {/*<Col span={12}>col-12</Col>*/}
-            {/*<Col span={12}>col-12</Col>*/}
+            {/*</Col>*/}
         {/*</Row>*/}
         return (
-            <Row className="login-wrap">
-                <Col span={12} className="login-main">
+            <div className="login-wrap">
+                <Row className="login-popup">
+                    <Col span={12} className="login-main">
                     <div className="login-content">
-                        <h3 className="title">登录</h3>
-                        <LoginFrom></LoginFrom>
+                    <h2 className="title">登录</h2>
+                    <LoginFrom></LoginFrom>
                     </div>
-                </Col>
-                <Col span={12} className="right-main">
+                    </Col>
+                    <Col span={12} className="right-main">
 
-                </Col>
-            </Row>
+                    </Col>
+                </Row>
+            </div>
         )
     }
 }
