@@ -13,9 +13,14 @@ export default class LoginForm extends Component {
         super(props)
     }
 
+    onSubmit = () => {
+        const { onSubmit } = this.props;
+        onSubmit && onSubmit()
+    };
+
     render() {
         return (
-            <Form onSubmit={()=>{}} className="login-form">
+            <Form onSubmit={this.onSubmit} className="login-form">
                 <FormItem>
                     <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
                 </FormItem>
@@ -24,7 +29,7 @@ export default class LoginForm extends Component {
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        登&nbsp;录
+                        Log&nbsp;in
                         <Icon type="arrow-right"/>
                     </Button>
                 </FormItem>
