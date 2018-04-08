@@ -41,7 +41,8 @@ module.exports = {
 
         // 别名
         alias: {
-            '@adminComponents': resolve('admin/components/')
+            '@adminComponents': resolve('admin/components/'),
+            '@adminAssets': resolve('admin/assets/')
         },
     },
 

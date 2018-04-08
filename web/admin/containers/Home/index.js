@@ -7,7 +7,7 @@ import BasePage from '@adminComponents/BasePage/'
 import {
     Layout, Breadcrumb, Menu, Icon,
     Avatar, Input, Tooltip, Card,
-    Col, Row
+    List, Popover, Button, Col, Row
 } from 'antd'
 import { Link } from 'react-router-dom'
 import './index.less'
@@ -17,19 +17,19 @@ const Search = Input.Search;
 const routes = [{
     path: '/',
     icon: 'home',
-    title: '首页'
-},{
-    path: '/list',
-    icon: 'home',
-    title: '文章列表'
+    title: '文章管理'
 },{
     path: '/edit',
-    icon: 'home',
-    title: '编辑'
+    icon: 'edit',
+    title: '添加/编辑文章'
 },{
-    path: '/demo',
-    icon: 'home',
-    title: '添加'
+    path: '/category',
+    icon: 'bars',
+    title: '分类'
+},{
+    path: '/comments',
+    icon: 'message',
+    title: '评论管理'
 }];
 
 export default class Home extends BasePage {
@@ -38,6 +38,21 @@ export default class Home extends BasePage {
     }
 
     render() {
+        const data = [
+            {
+                title: 'Title 1',
+            },
+            {
+                title: 'Title 2',
+            },
+            {
+                title: 'Title 3',
+            },
+            {
+                title: 'Title 4',
+            },
+        ];
+
         const { location: {pathname} } = this.props;
 
         return (
@@ -73,6 +88,9 @@ export default class Home extends BasePage {
                             })
                         }
                     </Menu>
+                    <a href="#" className="header-action btn-logout">
+                        <Icon type="logout"/>
+                    </a>
                 </Sider>
                 <Layout>
                     <Header className="home-header">
@@ -84,10 +102,10 @@ export default class Home extends BasePage {
                             placeholder="Search..."
                             onSearch={value => console.log(value)}
                         />
-                        <a href="#" className="header-action btn-logout">
-                            <Icon type="logout"/>
-                        </a>
-                        <a href="#" className="header-action btn-logout">
+                        {/*<a href="#" className="header-action btn-logout">*/}
+                            {/*<Icon type="logout"/>*/}
+                        {/*</a>*/}
+                        <a href="#" className="header-action btn-new">
                             <Icon type="plus"/>
                         </a>
                     </Header>
@@ -97,26 +115,73 @@ export default class Home extends BasePage {
                             <Breadcrumb.Item>那些年写的bug</Breadcrumb.Item>
                         </Breadcrumb>
                         <Content className="main">
-                            <Row gutter={20}>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                                <Col span={8}>
-                                    <Card title="Card title" bordered={false}>Card content</Card>
-                                </Col>
-                            </Row>
+                            <List
+                                grid={{ gutter: 20, column: 3 }}
+                                dataSource={data}
+                                renderItem={item => (
+                                    <List.Item>
+                                        <Card
+                                            // title={
+                                            //     <div className="ant-card-head-wrapper">
+                                            //         <div className="ant-card-head-title">
+                                            //             Title 1
+                                            //         </div>
+                                            //         <Popover
+                                            //             placement="rightTop"
+                                            //             title="设置"
+                                            //             content="山东省开裆裤"
+                                            //             trigger="click"
+                                            //         >
+                                            //             <Icon type="setting"/>
+                                            //         </Popover>
+                                            //     </div>
+                                            // }
+                                            bordered={false}
+                                        >
+                                            Card content
+                                        </Card>
+                                    </List.Item>
+                                )}
+                            />
+                            <List
+                                grid={{ gutter: 20, column: 3 }}
+                                dataSource={data}
+                                renderItem={item => (
+                                    <List.Item>
+                                        <Card
+                                            title={item.title}
+                                            bordered={false}
+                                            actions={[
+                                                <Icon type="edit" />,
+                                                <Icon type="edit" />,
+                                                <Icon type="delete"/>
+                                            ]}
+                                        >
+                                            Card content
+                                        </Card>
+                                    </List.Item>
+                                )}
+                            />
+                            {/*<Row gutter={20}>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                                {/*<Col span={8}>*/}
+                                    {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
+                                {/*</Col>*/}
+                            {/*</Row>*/}
                         </Content>
                     </Layout>
                 </Layout>
