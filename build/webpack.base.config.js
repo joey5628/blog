@@ -3,7 +3,11 @@
  * @date 2018/3/31
  */
 const path = require('path');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const contextPath = path.join(__dirname, '../web');
 const nodeModules = path.join(__dirname, '../node_modules');
 
@@ -11,8 +15,10 @@ function resolve(dir) {
     return path.join(__dirname, '../web/', dir)
 }
 
+const devMode = process.env.NODE_ENV === 'development';
+
 let cssLoader = [
-    { loader: 'style-loader' },
+    { loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader },
     { loader: 'css-loader' },
     {
         loader: 'postcss-loader',
@@ -62,19 +68,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: nodeModules,
-                use: [
-                    { loader: 'style-loader' },
-                    { loader: 'css-loader' },
-                    { loader: 'less-loader'},
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            config: {
-                                path: path.join(__dirname, '../build/postcss.config.js')
-                            }
-                        }
-                    }
-                ]
+                use: lessLoader
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -94,10 +88,33 @@ module.exports = {
             }
         ],
 
-        // noParse: ''
     },
 
-    // plugins: [
-    //     new ExtractTextPlugin('css/[name].[contenthash:8].css'),
-    // ]
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'admin.html',
+            template: path.join(__dirname, '../web/admin/index.html'),
+            alwaysWriteToDisk: true,
+            title: 'admin title'
+        }),
+
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        }),
+
+        new webpack.NoEmitOnErrorsPlugin(),
+    ],
+
+    optimization: {
+        minimizer: devMode ? [] : [
+            new UglifyJsPlugin({
+                cache: true,
+                parallel: true,
+                sourceMap: true // set to true if you want JS source maps
+            }),
+            new OptimizeCSSAssetsPlugin()
+        ]
+    }
 };

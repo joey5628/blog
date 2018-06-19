@@ -5,12 +5,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const webpackBaseConfig = require('./webpack.base.config');
 
 module.exports = merge(webpackBaseConfig, {
+
+    mode: 'development',
+
     entry: {
         admin: [
             'eventsource-polyfill',
@@ -28,32 +29,16 @@ module.exports = merge(webpackBaseConfig, {
         chunkFilename: 'js/[name].js'
     },
 
-    devtool: 'source-map',
+    devtool: '#source-map',
 
     plugins: [
-
-        // new ExtractTextPlugin('css/[name].[contenthash:8].css'),
-
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
-        }),
-
-        new HtmlWebpackPlugin({
-            filename: 'admin.html',
-            template: path.join(__dirname, '../web/admin/index.html'),
-            alwaysWriteToDisk: true,
-            title: 'admin title'
-        }),
         new HtmlWebpackHarddiskPlugin(),
         new webpack.NamedModulesPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor'
-        }),
-        // new webpack.optimize.OccurrenceOrderPlugin(),
-        // new webpack.HotModuleReplacementPlugin(),
+
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor'
+        // }),
+        // new webpack.optimize.OccurrenceOrderPlugin(),\
     ]
 });

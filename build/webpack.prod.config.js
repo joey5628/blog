@@ -5,12 +5,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseWebpackConfig = require('./webpack.base.config');
 
 module.exports = merge(baseWebpackConfig, {
+
+    mode: 'production',
+
     devtool: false,
 
     entry: {
@@ -29,17 +30,15 @@ module.exports = merge(baseWebpackConfig, {
     },
 
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: `assets/css/${name}_[name].[hash:4].css`,
+            chunkFilename: `assets/css/${name}_[id].[hash:4].css`,
+        }),
+
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production'),
             }
-        }),
-
-        new HtmlWebpackPlugin({
-            filename: 'admin.html',
-            template: path.join(__dirname, '../web/admin/index.html'),
-            alwaysWriteToDisk: true,
-            title: 'admin title'
         }),
     ]
 });
