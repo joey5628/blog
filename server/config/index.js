@@ -4,5 +4,13 @@
  */
 
 module.exports = {
-    port: process.env.PORT || 8000,
+    port: process.env.PORT || 3002,
+    mongodb: {
+        // url: 'mongodb://root:root@127.0.0.1:27017/blog',
+        url: 'mongodb://localhost:27017/blog'
+    },
+    mongooseOption: {
+        // authSource: "admin",
+        // useMongoClient: true
+    }
 };

@@ -47,8 +47,8 @@ module.exports = {
 
         // 别名
         alias: {
-            '@adminComponents': resolve('admin/components/'),
-            '@adminAssets': resolve('admin/assets/')
+            'base': resolve('base'),
+            'admin/components': resolve('admin/components/'),
         },
     },
 
@@ -96,6 +96,13 @@ module.exports = {
             template: path.join(__dirname, '../web/admin/index.html'),
             alwaysWriteToDisk: true,
             title: 'admin title'
+        }),
+
+        new HtmlWebpackPlugin({
+            filename: 'blog.html',
+            template: path.join(__dirname, '../web/blog/index.html'),
+            alwaysWriteToDisk: true,
+            title: 'blog title'
         }),
 
         new webpack.DefinePlugin({

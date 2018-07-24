@@ -2,8 +2,7 @@
  * @author zhangyi
  * @date 2018/4/1
  */
-import React from 'react'
-import BasePage from '@adminComponents/BasePage/'
+import React, { Component } from 'react'
 import {
     Layout, Breadcrumb, Menu, Icon,
     Avatar, Input, Tooltip, Card,
@@ -32,7 +31,7 @@ const routes = [{
     title: '评论管理'
 }];
 
-export default class Home extends BasePage {
+export default class Home extends Component {
     constructor(props) {
         super(props);
     }
@@ -116,46 +115,13 @@ export default class Home extends BasePage {
                         </Breadcrumb>
                         <Content className="main">
                             <List
-                                grid={{ gutter: 20, column: 3 }}
-                                dataSource={data}
-                                renderItem={item => (
-                                    <List.Item>
-                                        <Card
-                                            // title={
-                                            //     <div className="ant-card-head-wrapper">
-                                            //         <div className="ant-card-head-title">
-                                            //             Title 1
-                                            //         </div>
-                                            //         <Popover
-                                            //             placement="rightTop"
-                                            //             title="设置"
-                                            //             content="山东省开裆裤"
-                                            //             trigger="click"
-                                            //         >
-                                            //             <Icon type="setting"/>
-                                            //         </Popover>
-                                            //     </div>
-                                            // }
-                                            bordered={false}
-                                        >
-                                            Card content
-                                        </Card>
-                                    </List.Item>
-                                )}
-                            />
-                            <List
-                                grid={{ gutter: 20, column: 3 }}
+                                grid={{ gutter: 40, column: 3 }}
                                 dataSource={data}
                                 renderItem={item => (
                                     <List.Item>
                                         <Card
                                             title={item.title}
                                             bordered={false}
-                                            actions={[
-                                                <Icon type="edit" />,
-                                                <Icon type="edit" />,
-                                                <Icon type="delete"/>
-                                            ]}
                                         >
                                             Card content
                                         </Card>

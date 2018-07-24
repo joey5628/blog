@@ -2,10 +2,20 @@
  * @author zhangyi
  * @date 2018/3/31
  */
-import koa from 'koa'
+import Koa from 'koa'
+import path from 'path'
 import config from './config/index'
+import mongoose from 'mongoose'
+import session from 'koa-session-minimal'
+import bodyParser from 'koa-bodyparser'
+import koaStatic from 'koa-static'
+import router from './router'
 
-const app = new koa();
+mongoose.Promise = Promise;
+mongoose.connect(config.mongodb.url, config.mongooseOption);
+mongoose.connection.on('error', console.error);
+
+const app = new Koa();
 const env = process.env.NODE_ENV || 'development';
 
 if (env === 'development') {
@@ -52,6 +62,20 @@ if (env === 'development') {
     }))
 }
 
+app.use(session());
+
+app.use(bodyParser());
+
+// 配置静态资源加载中间件
+app.use(koaStatic(
+    path.resolve(process.cwd(), './dist/')
+));
+
+app.use(router.routes())
+    .use(router.allowedMethods());
+
+
 app.listen(config.port, ()=>{
-    console.log(`server listen at port ${config.port}`)
+    console.log(`server listen at port ${config.port}\n`);
+    console.log(`http://localhost:${config.port}\n`);
 });

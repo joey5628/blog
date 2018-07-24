@@ -5,7 +5,8 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'antd';
 import './index.less'
-import LoginFrom from '@adminComponents/LoginForm/'
+import LoginFrom from 'admin/components/LoginForm/'
+import Http from 'base/Http'
 
 export default class Login extends Component {
     constructor(props) {
@@ -13,7 +14,11 @@ export default class Login extends Component {
     }
 
     onSubmit = () => {
-        this.props.history.push('/');
+        // this.props.history.push('/');
+        const json = Http.post({
+            url: '/api/signin'
+        })
+        console.log('json:', json)
     };
 
     render() {

@@ -5,11 +5,9 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import { Switch, Route } from 'react-router-dom'
-import BaseContainer from '@adminComponents/BaseContainer/'
-import Login from '../containers/Login'
-import Home from '../containers/Home'
+import Login from '../Login/index'
+import Home from '../Home/index'
 import './index.less'
-
 
 class App extends Component {
     constructor(props) {
@@ -18,12 +16,12 @@ class App extends Component {
 
     render() {
         return (
-            <BaseContainer>
+            <div className="admin-layout">
                 <Switch>
                     <Route exact path="/login" component={Login}/>
                     <Route path="/" component={Home}/>
                 </Switch>
-            </BaseContainer>
+            </div>
         )
     }
 }
