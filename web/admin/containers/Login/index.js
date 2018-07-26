@@ -7,16 +7,21 @@ import { Row, Col } from 'antd';
 import './index.less'
 import LoginFrom from 'admin/components/LoginForm/'
 import Http from 'base/Http'
+import MD5 from 'md5'
 
 export default class Login extends Component {
     constructor(props) {
         super(props)
     }
 
-    onSubmit = () => {
+    onSubmit = async (values) => {
         // this.props.history.push('/');
-        const json = Http.post({
-            url: '/api/signin'
+        const json = await Http.post({
+            url: '/api/signin',
+            params: {
+                username: values.username,
+                password: MD5(values.password)
+            }
         })
         console.log('json:', json)
     };

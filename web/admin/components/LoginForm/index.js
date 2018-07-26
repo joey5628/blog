@@ -8,24 +8,56 @@ import { Form, Icon, Input, Button } from 'antd';
 import './index.less'
 const FormItem = Form.Item;
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
     constructor(props) {
         super(props)
     }
 
     onSubmit = () => {
         const { onSubmit } = this.props;
-        onSubmit && onSubmit()
+        // let dd = this.refs
+        // console.log('this.refs.username:', this.refs.username)
+        // debugger
+        // const username = this.refs.username.value
+        // const password = this.refs.password.value
+        // console.log(username + ':'+ password)
+        // onSubmit && onSubmit(username, password)
+        this.props.form.validateFields(
+            (err, values) => {
+                if (!err) {
+                    onSubmit(values)
+                }
+            },
+        );
     };
 
     render() {
+        const { form: {getFieldDecorator} } = this.props;
+
         return (
             <Form onSubmit={this.onSubmit} className="login-form">
                 <FormItem>
-                    <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+                    {getFieldDecorator('username', {
+                        rules: [{
+                            required: true,
+                            message: '请输入用户名',
+                        }],
+                    })(
+                        <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                               placeholder="用户名" />
+                    )}
                 </FormItem>
                 <FormItem>
-                    <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
+                    {getFieldDecorator('password', {
+                        rules: [{
+                            required: true,
+                            message: '请输入密码',
+                        }],
+                    })(
+                        <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                               type="password"
+                               placeholder="密码" />
+                    )}
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
@@ -37,3 +69,5 @@ export default class LoginForm extends Component {
         )
     }
 }
+
+export default Form.create({})(LoginForm);
