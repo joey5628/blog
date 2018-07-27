@@ -12,5 +12,8 @@ module.exports = {
     mongooseOption: {
         // authSource: "admin",
         // useMongoClient: true
+    },
+    jwt: {
+        secretKey: 'secretKey'
     }
 };

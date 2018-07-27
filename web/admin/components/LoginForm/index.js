@@ -15,13 +15,6 @@ class LoginForm extends Component {
 
     onSubmit = () => {
         const { onSubmit } = this.props;
-        // let dd = this.refs
-        // console.log('this.refs.username:', this.refs.username)
-        // debugger
-        // const username = this.refs.username.value
-        // const password = this.refs.password.value
-        // console.log(username + ':'+ password)
-        // onSubmit && onSubmit(username, password)
         this.props.form.validateFields(
             (err, values) => {
                 if (!err) {
