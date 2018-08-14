@@ -3,7 +3,7 @@
  * @date 2018/4/1
  */
 import React, { Component } from 'react'
-import { Row, Col } from 'antd';
+import { Row, Col, message } from 'antd';
 import './index.less'
 import LoginFrom from 'admin/components/LoginForm/'
 import Http from 'base/Http'
@@ -14,8 +14,8 @@ export default class Login extends Component {
         super(props)
     }
 
-    onSubmit = async (values) => {
-        // this.props.history.push('/');
+    onSubmit = async (e, values) => {
+        e.preventDefault();
         const json = await Http.post({
             url: '/api/signin',
             params: {
@@ -23,7 +23,11 @@ export default class Login extends Component {
                 password: MD5(values.password)
             }
         })
-        console.log('json:', json)
+        if (json && json.code !== 0) {
+            message.error(json.message)
+        } else {
+            this.props.history.push('/');
+        }
     };
 
     render() {

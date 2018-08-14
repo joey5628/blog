@@ -7,6 +7,15 @@ import User from '../models/userModel'
 import config from '../config'
 
 
+export async function signOut(ctx) {
+
+}
+
+/**
+ * 登录
+ * @param ctx
+ * @returns {Promise<void>}
+ */
 export async function signIn(ctx) {
     const { username, password } = ctx.request.body;
 
@@ -35,13 +44,22 @@ export async function signIn(ctx) {
                 })
 
                 console.log('token:', token)
+                console.log('ctx.cookies:', ctx.cookies)
 
-                ctx.cookie.set('token', token, {
+                ctx.cookies.set('token', token, {
                     maxAge: 24 * 60 * 60,
                     expires: exp,   // 过期时间
-                    httpOnly: true,
+                    httpOnly: false,
                     overwrite: false
                 })
+
+                ctx.cookies.set('uid', user.id, {
+                    maxAge: 24 * 60 * 60,
+                    expires: exp,   // 过期时间
+                    httpOnly: false,
+                    overwrite: false
+                })
+
                 ctx.body = {
                     code: 0,
                     message: '登录成功'

@@ -13,12 +13,12 @@ class LoginForm extends Component {
         super(props)
     }
 
-    onSubmit = () => {
+    onSubmit = (e) => {
         const { onSubmit } = this.props;
         this.props.form.validateFields(
             (err, values) => {
                 if (!err) {
-                    onSubmit(values)
+                    onSubmit(e, values)
                 }
             },
         );
