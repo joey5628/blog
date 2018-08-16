@@ -8,6 +8,7 @@ import {
     Avatar, Input, Tooltip, Card,
     List, Popover, Button, Col, Row
 } from 'antd'
+import Cookies from 'js-cookie'
 import { Link } from 'react-router-dom'
 import './index.less'
 const { Header, Footer, Sider, Content } = Layout;
@@ -34,6 +35,11 @@ const routes = [{
 export default class Home extends Component {
     constructor(props) {
         super(props);
+    }
+
+    logout = () => {
+        Cookies.remove('token');
+        this.props.history.replace('/admin/login');
     }
 
     render() {
@@ -87,7 +93,7 @@ export default class Home extends Component {
                             })
                         }
                     </Menu>
-                    <a href="#" className="header-action btn-logout">
+                    <a className="header-action btn-logout" onClick={this.logout}>
                         <Icon type="logout"/>
                     </a>
                 </Sider>
@@ -104,7 +110,7 @@ export default class Home extends Component {
                         {/*<a href="#" className="header-action btn-logout">*/}
                             {/*<Icon type="logout"/>*/}
                         {/*</a>*/}
-                        <a href="#" className="header-action btn-new">
+                        <a className="header-action btn-new">
                             <Icon type="plus"/>
                         </a>
                     </Header>

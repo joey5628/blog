@@ -43,9 +43,6 @@ export async function signIn(ctx) {
                     expiresIn: exp
                 })
 
-                console.log('token:', token)
-                console.log('ctx.cookies:', ctx.cookies)
-
                 ctx.cookies.set('token', token, {
                     maxAge: 24 * 60 * 60,
                     expires: exp,   // 过期时间
@@ -53,12 +50,12 @@ export async function signIn(ctx) {
                     overwrite: false
                 })
 
-                ctx.cookies.set('uid', user.id, {
-                    maxAge: 24 * 60 * 60,
-                    expires: exp,   // 过期时间
-                    httpOnly: false,
-                    overwrite: false
-                })
+                // ctx.cookies.set('uid', user.id, {
+                //     maxAge: 24 * 60 * 60,
+                //     expires: exp,   // 过期时间
+                //     httpOnly: false,
+                //     overwrite: false
+                // })
 
                 ctx.body = {
                     code: 0,
@@ -66,13 +63,13 @@ export async function signIn(ctx) {
                 }
             } else {
                 ctx.body = {
-                    code: 0,
+                    code: 401,
                     message: '密码错误'
                 }
             }
         } else {
             ctx.body = {
-                code: 0,
+                code: 401,
                 message: '用户不存在'
             }
         }
