@@ -36,7 +36,7 @@ export default class Login extends Component {
                 <Row className="login-popup">
                     <Col span={12} className="login-main">
                     <div className="login-content">
-                    <h2 className="title">Log in</h2>
+                    <h2 className="title">登 录</h2>
                     <LoginFrom
                         onSubmit={this.onSubmit}
                     />

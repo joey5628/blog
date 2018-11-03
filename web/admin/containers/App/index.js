@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
 import { Switch, Route } from 'react-router-dom'
 import Login from '../Login/index'
-import Home from '../Home/index'
+import Layout from '../Layout/index'
 import './index.less'
 
 class App extends Component {
@@ -18,8 +18,8 @@ class App extends Component {
         return (
             <div className="admin-layout">
                 <Switch>
-                    <Route exact path="/login" component={Login}/>
-                    <Route path="/" component={Home}/>
+                    <Route path="/login" component={Login}/>
+                    <Route path="/admin" component={Layout}/>
                 </Switch>
             </div>
         )

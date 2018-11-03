@@ -2,11 +2,10 @@
  * @author zhangyi
  * @date 2018/4/1
  */
-
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button } from 'antd'
 import './index.less'
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 class LoginForm extends Component {
     constructor(props) {
@@ -21,8 +20,9 @@ class LoginForm extends Component {
                     onSubmit(e, values)
                 }
             },
-        );
-    };
+        )
+        e.preventDefault()
+    }
 
     render() {
         const { form: {getFieldDecorator} } = this.props;
@@ -54,7 +54,7 @@ class LoginForm extends Component {
                 </FormItem>
                 <FormItem>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        Log&nbsp;in
+                        登 录
                         <Icon type="arrow-right"/>
                     </Button>
                 </FormItem>
@@ -63,4 +63,4 @@ class LoginForm extends Component {
     }
 }
 
-export default Form.create({})(LoginForm);
+export default Form.create({})(LoginForm)

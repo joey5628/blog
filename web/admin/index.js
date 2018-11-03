@@ -12,8 +12,8 @@ import './assets/base.css'
 
 
 ReactDom.render(
-    <HashRouter basename="/admin">
+    <BrowserRouter>
         <App/>
-    </HashRouter>,
+    </BrowserRouter>,
     document.getElementById('root')
 );
