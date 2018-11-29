@@ -12,9 +12,9 @@ import koaStatic from 'koa-static'
 import views from 'koa-views'
 import router from './router'
 
-// mongoose.Promise = Promise;
-// mongoose.connect(config.mongodb.url, config.mongooseOption);
-// mongoose.connection.on('error', console.error);
+mongoose.Promise = Promise;
+mongoose.connect(config.mongodb.url, config.mongooseOption);
+mongoose.connection.on('error', console.error);
 
 const app = new Koa();
 const env = process.env.NODE_ENV || 'development'

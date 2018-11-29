@@ -37,11 +37,6 @@ export default class Home extends Component {
         super(props);
     }
 
-    logout = () => {
-        Cookies.remove('token');
-        this.props.history.replace('/admin/login');
-    }
-
     render() {
         const data = [
             {
@@ -76,26 +71,6 @@ export default class Home extends Component {
                         </List.Item>
                     )}
                 />
-                {/*<Row gutter={20}>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                    {/*<Col span={8}>*/}
-                        {/*<Card title="Card title" bordered={false}>Card content</Card>*/}
-                    {/*</Col>*/}
-                {/*</Row>*/}
             </Content>
         )
     }

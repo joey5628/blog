@@ -15,6 +15,8 @@ const { Header, Footer, Sider, Content } = Layout;
 import { Switch, Route } from 'react-router-dom'
 import Home from '../Home'
 import Category from '../Category'
+import ArticleEdit from '../ArticleEdit'
+import config from '../../config'
 
 const Search = Input.Search;
 
@@ -43,7 +45,7 @@ export default class LayoutPage extends Component {
 
     logout = () => {
         Cookies.remove('token');
-        this.props.history.replace('/admin/login');
+        this.props.history.replace('/login');
     }
 
     render() {
@@ -74,7 +76,7 @@ export default class LayoutPage extends Component {
                         <Avatar
                             className="home-avatar"
                             shape="square"
-                            src="http://owtrjd7fu.bkt.clouddn.com/sun.jpeg"/>
+                            src={`${config.qiniuDomain}/imgs/sun.jpg`}/>
                     </div>
                     <Menu
                         mode="inline"
@@ -103,29 +105,20 @@ export default class LayoutPage extends Component {
                 </Sider>
                 <Layout>
                     <Header className="home-header">
-                        {/*<a href="#" className="header-action btn-new">*/}
-                            {/*<Icon type="plus"/>*/}
-                        {/*</a>*/}
                         <Search
                             className="home-search"
                             placeholder="Search..."
                             onSearch={value => console.log(value)}
                         />
-                        {/*<a href="#" className="header-action btn-logout">*/}
-                            {/*<Icon type="logout"/>*/}
-                        {/*</a>*/}
                         <a className="header-action btn-new">
                             <Icon type="plus"/>
                         </a>
                     </Header>
-                    <Layout style={{ padding: '0 24px 24px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
-                            <Breadcrumb.Item>首页</Breadcrumb.Item>
-                            <Breadcrumb.Item>那些年写的bug</Breadcrumb.Item>
-                        </Breadcrumb>
+                    <Layout>
                         <Switch>
                             <Route exact path="/admin" component={Home}/>
                             <Route path="/admin/category" component={Category}/>
+                            <Route path="/admin/edit" component={ArticleEdit}/>
                         </Switch>
                     </Layout>
                 </Layout>

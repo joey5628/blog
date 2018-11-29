@@ -1,6 +1,7 @@
 import Router from 'koa-router'
+import { pageVerify } from "../middleware/verify"
 
-const router = new Router();
+const router = new Router()
 
 const pageRouter = router
     .get('/', async (ctx) => {
@@ -8,16 +9,15 @@ const pageRouter = router
             title: 'blog'
         })
     })
-    .get('admin', async (ctx) => {
+    .get('admin', pageVerify, async (ctx) => {
         await ctx.render('admin', {
             title: '博客后台'
-        });
+        })
     })
-    .get('admin/*', async (ctx) => {
-        console.log('---------------111----')
+    .get('admin/*', pageVerify, async (ctx) => {
         await ctx.render('admin', {
             title: '博客后台'
-        });
+        })
     })
     .get('login', async (ctx) => {
         await ctx.render('admin', {

@@ -37,7 +37,9 @@ class LoginForm extends Component {
                         }],
                     })(
                         <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                               placeholder="用户名" />
+                               placeholder="用户名"
+                               size="large"
+                        />
                     )}
                 </FormItem>
                 <FormItem>
@@ -49,11 +51,13 @@ class LoginForm extends Component {
                     })(
                         <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                type="password"
-                               placeholder="密码" />
+                               placeholder="密码"
+                               size="large"
+                        />
                     )}
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
+                    <Button type="primary" htmlType="submit" className="login-form-button" size="large">
                         登 录
                         <Icon type="arrow-right"/>
                     </Button>
